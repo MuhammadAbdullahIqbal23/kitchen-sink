@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: react-reuse-existing
+expected_outcome: |
+  The team's existing components are rendered as they are inside a development-only route, with missing catalog components generated or declared.
+context:
+  scaffold_script: place-files.sh

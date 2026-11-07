@@ -1,0 +1,75 @@
+/* Layout of the sink itself. Not part of the design system. */
+
+html { color-scheme: light; scroll-padding-block-start: calc(var(--space-20) + var(--space-4)); }
+html[data-theme="dark"] { color-scheme: dark; }
+body { margin: 0; background: var(--color-bg-canvas); color: var(--color-text-default); font-family: var(--font-family-sans); font-size: var(--typography-body-font-size); line-height: var(--typography-body-line-height); }
+
+.sink-header { padding: var(--space-8) var(--space-6) var(--space-4); }
+.sink-header h1 { margin: 0; font-size: var(--typography-h1-font-size); line-height: var(--typography-h1-line-height); }
+.sink-header p { margin: var(--space-1) 0 0; color: var(--color-text-muted); }
+
+.sink-controls { position: sticky; inset-block-start: 0; z-index: var(--layer-sticky); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); padding: var(--space-3) var(--space-6); background: var(--color-bg-surface); border-block: var(--border-width-thin) solid var(--color-border-default); }
+.sink-control { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--typography-label-font-size); font-weight: var(--typography-label-font-weight); }
+.sink-control .ks-select { inline-size: auto; }
+
+.sink-layout { display: grid; grid-template-columns: calc(var(--space-20) * 2.5) minmax(0, 1fr); gap: var(--space-8); padding: var(--space-6); align-items: start; }
+.sink-nav { position: sticky; inset-block-start: var(--space-20); max-block-size: calc(100vh - var(--space-20) - var(--space-4)); overflow: auto; font-size: var(--typography-body-sm-font-size); }
+.sink-nav h2 { margin: var(--space-4) 0 var(--space-1); font-size: var(--typography-caption-font-size); font-weight: var(--font-weight-semibold); color: var(--color-text-muted); }
+.sink-nav ul { margin: 0; padding: 0; list-style: none; }
+.sink-nav a { display: block; padding: var(--space-1) var(--space-2); color: var(--color-text-default); border-radius: var(--radius-sm); text-decoration: none; }
+.sink-nav a:hover { background: var(--color-bg-sunken); }
+.sink-nav a:focus-visible { outline: var(--border-width-thick) solid var(--color-border-focus); }
+
+.sink-section { padding-block-end: var(--space-10); }
+.sink-section > h2 { margin: 0 0 var(--space-1); font-size: var(--typography-h2-font-size); line-height: var(--typography-h2-line-height); }
+.sink-section > p { margin: 0 0 var(--space-4); color: var(--color-text-muted); max-inline-size: 70ch; }
+.sink-group-title { margin: 0 0 var(--space-6); padding-block-end: var(--space-2); font-size: var(--typography-h3-font-size); border-block-end: var(--border-width-thin) solid var(--color-border-default); }
+.sink-sub { margin: var(--space-5) 0 var(--space-2); font-size: var(--typography-caption-font-size); font-weight: var(--font-weight-semibold); color: var(--color-text-muted); }
+
+.sink-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-20) * 2), 1fr)); gap: var(--space-4); }
+.sink-grid--wide { grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-20) * 3.5), 1fr)); }
+.sink-sample { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); margin: 0; min-inline-size: 0; }
+.sink-sample > figcaption { font-size: var(--typography-caption-font-size); color: var(--color-text-muted); }
+.sink-sample--fill > :not(figcaption) { align-self: stretch; }
+.sink-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+
+.sink-table-wrap { overflow-x: auto; }
+.sink-matrix { border-collapse: separate; border-spacing: var(--space-3) var(--space-2); margin-inline-start: calc(var(--space-3) * -1); }
+.sink-matrix th { font-size: var(--typography-caption-font-size); font-weight: var(--font-weight-medium); color: var(--color-text-muted); text-align: start; white-space: nowrap; }
+.sink-matrix td { white-space: nowrap; }
+
+.sink-frame { align-self: stretch; padding: var(--space-4); background: var(--color-bg-overlay); border-radius: var(--radius-md); }
+
+/* Foundations */
+.sink-ramp { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: var(--space-1); margin-block-end: var(--space-3); }
+.sink-ramp__step { block-size: var(--space-10); border-radius: var(--radius-sm); border: var(--border-width-thin) solid var(--color-border-default); }
+.sink-ramp__label { margin-block-end: var(--space-1); font-size: var(--typography-caption-font-size); color: var(--color-text-muted); }
+.sink-tokens { width: 100%; border-collapse: collapse; font-size: var(--typography-body-sm-font-size); }
+.sink-tokens th, .sink-tokens td { padding: var(--space-2) var(--space-3); text-align: start; border-block-end: var(--border-width-thin) solid var(--color-border-default); }
+.sink-tokens th { font-size: var(--typography-caption-font-size); color: var(--color-text-muted); font-weight: var(--font-weight-medium); }
+.sink-tokens code, .sink-mono { font-family: var(--font-family-mono); font-size: var(--typography-caption-font-size); }
+.sink-swatch { display: inline-block; inline-size: var(--space-8); block-size: var(--space-6); vertical-align: middle; border-radius: var(--radius-sm); border: var(--border-width-thin) solid var(--color-border-default); }
+.sink-pair { display: inline-grid; place-items: center; inline-size: var(--space-12); block-size: var(--space-6); border-radius: var(--radius-sm); font-size: var(--typography-caption-font-size); font-weight: var(--font-weight-semibold); }
+.sink-type-sample { margin: 0 0 var(--space-4); }
+.sink-type-sample > div:last-child { font-size: var(--typography-caption-font-size); color: var(--color-text-muted); font-family: var(--font-family-mono); }
+.sink-bar { block-size: var(--space-3); background: var(--color-action-primary-bg); border-radius: var(--radius-sm); }
+.sink-box { inline-size: var(--space-20); block-size: var(--space-16); display: grid; place-items: center; background: var(--color-bg-sunken); border: var(--border-width-thin) solid var(--color-border-strong); font-size: var(--typography-caption-font-size); }
+.sink-elevation { padding: var(--space-6); background: var(--color-bg-canvas); border-radius: var(--radius-md); }
+.sink-elevation--surface { background: var(--color-bg-surface); }
+.sink-elevation > div { inline-size: var(--space-20); block-size: var(--space-16); display: grid; place-items: center; background: var(--color-bg-raised); border-radius: var(--radius-md); font-size: var(--typography-caption-font-size); }
+.sink-motion-track { position: relative; block-size: var(--space-8); align-self: stretch; background: var(--color-bg-sunken); border-radius: var(--radius-sm); overflow: hidden; }
+.sink-motion-dot { position: absolute; inset-block-start: var(--space-1); inset-inline-start: var(--space-1); inline-size: var(--space-6); block-size: var(--space-6); border-radius: var(--radius-sm); background: var(--color-action-primary-bg); }
+.sink-motion-dot.is-end { inset-inline-start: calc(100% - var(--space-8)); }
+
+/* Compositions */
+.sink-screen { padding: var(--space-6); max-inline-size: calc(var(--space-20) * 6); background: var(--color-bg-surface); border: var(--border-width-thin) solid var(--color-border-default); border-radius: var(--radius-lg); display: grid; gap: var(--space-4); }
+.sink-screen h3 { margin: 0; font-size: var(--typography-h3-font-size); }
+.sink-screen--wide { max-inline-size: none; }
+.sink-screen__cards { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(calc(var(--space-20) * 2.5), 1fr)); }
+
+@media (max-width: 767px) {
+  .sink-layout { grid-template-columns: minmax(0, 1fr); padding: var(--space-4); }
+  .sink-nav { display: none; }
+  .sink-header { padding-inline: var(--space-4); }
+  .sink-controls { padding-inline: var(--space-4); }
+}

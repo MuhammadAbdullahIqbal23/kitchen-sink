@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Kitchen sink · Fieldnote</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <link rel="stylesheet" href="kitchen-sink.css">
+</head>
+<body>
+  <header class="sink-header">
+    <h1>Fieldnote design system</h1>
+    <p>Plain HTML and CSS · Starter tier · 17 of 17 components · Sample brand colour #0f766e</p>
+  </header>
+
+  <div class="sink-controls" role="region" aria-label="Preview controls">
+    <label class="sink-control">Theme
+      <select class="ks-select ks-select--sm" id="control-theme">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </label>
+    <label class="sink-control">Direction
+      <select class="ks-select ks-select--sm" id="control-direction">
+        <option value="ltr">Left to right</option>
+        <option value="rtl">Right to left</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="sink-layout">
+    <nav class="sink-nav" aria-label="Sections">
+      <h2>Foundations</h2>
+      <ul>
+        <li><a href="#color">Colour</a></li>
+        <li><a href="#typography">Typography</a></li>
+        <li><a href="#spacing">Spacing</a></li>
+        <li><a href="#radius">Radius</a></li>
+        <li><a href="#elevation">Elevation</a></li>
+        <li><a href="#motion">Motion</a></li>
+      </ul>
+      <h2>Actions</h2>
+      <ul>
+        <li><a href="#button">Button</a></li>
+        <li><a href="#icon-button">Icon Button</a></li>
+        <li><a href="#link">Link</a></li>
+      </ul>
+      <h2>Forms</h2>
+      <ul>
+        <li><a href="#text-input">Text Input</a></li>
+        <li><a href="#textarea">Textarea</a></li>
+        <li><a href="#select">Select</a></li>
+        <li><a href="#checkbox">Checkbox</a></li>
+        <li><a href="#radio">Radio Group</a></li>
+        <li><a href="#switch">Switch</a></li>
+        <li><a href="#form-field">Form Field</a></li>
+      </ul>
+      <h2>Layout and navigation</h2>
+      <ul>
+        <li><a href="#card">Card</a></li>
+        <li><a href="#tabs">Tabs</a></li>
+      </ul>
+      <h2>Feedback</h2>
+      <ul>
+        <li><a href="#badge">Badge</a></li>
+        <li><a href="#alert">Alert</a></li>
+        <li><a href="#spinner">Spinner</a></li>
+      </ul>
+      <h2>Overlays</h2>
+      <ul>
+        <li><a href="#dialog">Dialog</a></li>
+        <li><a href="#tooltip">Tooltip</a></li>
+      </ul>
+      <h2>In use</h2>
+      <ul>
+        <li><a href="#compositions">Compositions</a></li>
+        <li><a href="#coverage">Coverage</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <h2 class="sink-group-title">Foundations</h2>
+
+      <section class="sink-section" id="color">
+        <h2>Colour</h2>
+        <p>Components use semantic tokens. Values below read live from the current theme. Ratios are measured against each token's usual background.</p>
+        <div id="color-ramps"></div>
+        <div class="sink-table-wrap"><table class="sink-tokens" id="color-table"></table></div>
+      </section>
+
+      <section class="sink-section" id="typography">
+        <h2>Typography</h2>
+        <div id="type-samples"></div>
+      </section>
+
+      <section class="sink-section" id="spacing">
+        <h2>Spacing</h2>
+        <div class="sink-table-wrap"><table class="sink-tokens" id="space-table"></table></div>
+      </section>
+
+      <section class="sink-section" id="radius">
+        <h2>Radius</h2>
+        <div class="sink-row" id="radius-samples"></div>
+      </section>
+
+      <section class="sink-section" id="elevation">
+        <h2>Elevation</h2>
+        <div class="sink-row">
+          <div class="sink-elevation"><div style="box-shadow: var(--shadow-sm)">shadow.sm</div></div>
+          <div class="sink-elevation"><div style="box-shadow: var(--shadow-md)">shadow.md</div></div>
+          <div class="sink-elevation"><div style="box-shadow: var(--shadow-lg)">shadow.lg</div></div>
+          <div class="sink-elevation sink-elevation--surface"><div style="box-shadow: var(--shadow-sm)">sm on surface</div></div>
+          <div class="sink-elevation sink-elevation--surface"><div style="box-shadow: var(--shadow-md)">md on surface</div></div>
+          <div class="sink-elevation sink-elevation--surface"><div style="box-shadow: var(--shadow-lg)">lg on surface</div></div>
+        </div>
+      </section>
+
+      <section class="sink-section" id="motion">
+        <h2>Motion</h2>
+        <p>Nothing loops by itself. Press a button to replay.</p>
+        <div class="sink-grid sink-grid--wide" id="motion-samples"></div>
+      </section>
+
+      <h2 class="sink-group-title">Actions</h2>
+
+      <section class="sink-section" id="button">
+        <h2>Button</h2>
+        <h3 class="sink-sub">Variants by state</h3>
+        <div class="sink-table-wrap" id="button-matrix"></div>
+        <h3 class="sink-sub">Sizes</h3>
+        <div class="sink-row">
+          <button class="ks-button ks-button--primary ks-button--sm" type="button">Small</button>
+          <button class="ks-button ks-button--primary" type="button">Medium</button>
+          <button class="ks-button ks-button--primary ks-button--lg" type="button">Large</button>
+        </div>
+        <h3 class="sink-sub">Edge cases</h3>
+        <div class="sink-grid sink-grid--wide">
+          <figure class="sink-sample"><figcaption>Long label</figcaption>
+            <button class="ks-button ks-button--primary" type="button">Your subscription renews automatically on 14 March</button></figure>
+          <figure class="sink-sample"><figcaption>Icon plus label</figcaption>
+            <button class="ks-button ks-button--secondary" type="button"><svg class="ks-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>New note</button></figure>
+          <figure class="sink-sample"><figcaption>Right-to-left text</figcaption>
+            <button class="ks-button ks-button--primary" type="button" lang="ar">حفظ التغييرات</button></figure>
+        </div>
+      </section>
+
+      <section class="sink-section" id="icon-button">
+        <h2>Icon Button</h2>
+        <h3 class="sink-sub">Variants by state</h3>
+        <div class="sink-table-wrap" id="icon-button-matrix"></div>
+        <h3 class="sink-sub">Sizes</h3>
+        <div class="sink-row">
+          <button class="ks-icon-button ks-icon-button--secondary ks-icon-button--sm" type="button" aria-label="Search notes, small"><svg class="ks-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+          <button class="ks-icon-button ks-icon-button--secondary" type="button" aria-label="Search notes, medium"><svg class="ks-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+          <button class="ks-icon-button ks-icon-button--secondary ks-icon-button--lg" type="button" aria-label="Search notes, large"><svg class="ks-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+        </div>
+        <h3 class="sink-sub">Edge cases</h3>
+        <figure class="sink-sample"><figcaption>With badge</figcaption>
+          <span style="display:inline-flex;align-items:center;gap:var(--space-1)">
+            <button class="ks-icon-button ks-icon-button--ghost" type="button" aria-label="Notifications, 12 unread"><svg class="ks-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9a6 6 0 0 1 12 0c0 7 3 8 3 8H3s3-1 3-8M10 21h4"/></svg></button>
+            <span class="ks-badge ks-badge--danger" aria-hidden="true">12</span>
+          </span>
+        </figure>
+      </section>
+
+      <section class="sink-section" id="link">
+        <h2>Link</h2>
+        <div class="sink-grid">
+          <figure class="sink-sample"><figcaption>Default</figcaption><a class="ks-link" href="#link">Export your notes</a></figure>
+          <figure class="sink-sample"><figcaption>Hover (forced)</figcaption><a class="ks-link" href="#link" data-force-state="hover">Export your notes</a></figure>
+          <figure class="sink-sample"><figcaption>Focus (forced)</figcaption><a class="ks-link" href="#link" data-force-state="focus">Export your notes</a></figure>
+          <figure class="sink-sample"><figcaption>Active (forced)</figcaption><a class="ks-link" href="#link" data-force-state="active">Export your notes</a></figure>
+          <figure class="sink-sample"><figcaption>Standalone</figcaption><a class="ks-link ks-link--standalone" href="#link">View all notebooks</a></figure>
+        </div>
+        <h3 class="sink-sub">Edge cases</h3>
+        <p style="max-inline-size:40ch;margin:0 0 var(--space-3)">Inline in a sentence, <a class="ks-link" href="#link">this link wraps across more than one line when the column gets narrow</a>, and stays readable.</p>
+        <a class="ks-link" href="#link">Read the field guide <span aria-hidden="true">↗</span><span class="ks-visually-hidden"> (opens the guide)</span></a>
+      </section>
+
+      <h2 class="sink-group-title">Forms</h2>
+
+      <section class="sink-section" id="text-input">
+        <h2>Text Input</h2>
+        <div class="sink-grid sink-grid--wide">
+          <figure class="sink-sample sink-sample--fill"><figcaption>Default</figcaption><input class="ks-input" aria-label="Default example" placeholder="Notebook name"></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Hover (forced)</figcaption><input class="ks-input" aria-label="Hover example" placeholder="Notebook name" data-force-state="hover"></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Focus (forced)</figcaption><input class="ks-input" aria-label="Focus example" placeholder="Notebook name" data-force-state="focus"></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Filled</figcaption><input class="ks-input" aria-label="Filled example" value="Spring bird survey"></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Disabled</figcaption><input class="ks-input" aria-label="Disabled example" value="Archived notebook" disabled></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Read-only</figcaption><input class="ks-input" aria-label="Read-only example" value="FN-20418" readonly></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Error</figcaption><input class="ks-input" aria-label="Error example" value="Spring/2026" aria-invalid="true"></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Success</figcaption><input class="ks-input ks-input--success" aria-label="Success example" value="spring-bird-survey"></figure>
+        </div>
+        <h3 class="sink-sub">Sizes</h3>
+        <div class="sink-grid sink-grid--wide">
+          <input class="ks-input ks-input--sm" aria-label="Small example" placeholder="Small">
+          <input class="ks-input" aria-label="Medium example" placeholder="Medium">
+          <input class="ks-input ks-input--lg" aria-label="Large example" placeholder="Large">
+        </div>
+        <h3 class="sink-sub">Edge cases</h3>
+        <div class="sink-grid sink-grid--wide">
+          <figure class="sink-sample sink-sample--fill"><figcaption>Prefix and suffix</figcaption>
+            <div class="ks-input-group"><span class="ks-input-group__prefix" aria-hidden="true">$</span><input class="ks-input" aria-label="Field budget in US dollars" value="1,234,567.89"><span class="ks-input-group__suffix" aria-hidden="true">USD</span></div></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Long value</figcaption><input class="ks-input" aria-label="Long value example" value="Kraftfahrzeughaftpflichtversicherung Kraftfahrzeughaftpflichtversicherung"></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Placeholder only</figcaption><input class="ks-input" aria-label="Search all notebooks" placeholder="Search all notebooks"></figure>
+        </div>
+      </section>
+
+      <section class="sink-section" id="textarea">
+        <h2>Textarea</h2>
+        <div class="sink-grid sink-grid--wide">
+          <figure class="sink-sample sink-sample--fill"><figcaption>Default</figcaption><textarea class="ks-textarea" aria-label="Default textarea" placeholder="What did you observe?"></textarea></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Hover (forced)</figcaption><textarea class="ks-textarea" aria-label="Hover textarea" placeholder="What did you observe?" data-force-state="hover"></textarea></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Focus (forced)</figcaption><textarea class="ks-textarea" aria-label="Focus textarea" placeholder="What did you observe?" data-force-state="focus"></textarea></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Filled</figcaption><textarea class="ks-textarea" aria-label="Filled textarea">Two pairs nesting near the north ridge. Heavy rain after noon.</textarea></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Disabled</figcaption><textarea class="ks-textarea" aria-label="Disabled textarea" disabled>Locked after review.</textarea></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Read-only</figcaption><textarea class="ks-textarea" aria-label="Read-only textarea" readonly>Imported from the 2025 survey.</textarea></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Error</figcaption><textarea class="ks-textarea" aria-label="Error textarea" aria-invalid="true">Too short</textarea></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Character count</figcaption>
+            <span class="ks-field"><textarea class="ks-textarea" aria-label="Summary with character count" maxlength="140">Calm morning with light wind.</textarea><span class="ks-field__help">29 of 140 characters</span></span></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Very long value</figcaption><textarea class="ks-textarea" aria-label="Long textarea">Your subscription renews automatically on 14 March unless you cancel it first. Your subscription renews automatically on 14 March unless you cancel it first. Your subscription renews automatically on 14 March unless you cancel it first. Your subscription renews automatically on 14 March unless you cancel it first.</textarea></figure>
+        </div>
+      </section>
+
+      <section class="sink-section" id="select">
+        <h2>Select</h2>
+        <p>Uses the native control, so the open list is drawn by the browser. Click one to see it.</p>
+        <div class="sink-grid sink-grid--wide">
+          <figure class="sink-sample sink-sample--fill"><figcaption>Default</figcaption><select class="ks-select" aria-label="Default select"><option>All notebooks</option><option>Spring bird survey</option><option>River samples</option></select></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Hover (forced)</figcaption><select class="ks-select" aria-label="Hover select" data-force-state="hover"><option>All notebooks</option></select></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Focus (forced)</figcaption><select class="ks-select" aria-label="Focus select" data-force-state="focus"><option>All notebooks</option></select></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Filled</figcaption><select class="ks-select" aria-label="Filled select"><option>All notebooks</option><option selected>River samples</option></select></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Disabled</figcaption><select class="ks-select" aria-label="Disabled select" disabled><option>All notebooks</option></select></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Error</figcaption><select class="ks-select" aria-label="Error select" aria-invalid="true"><option>Choose a notebook</option></select></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Long option</figcaption><select class="ks-select" aria-label="Long option select"><option>Kraftfahrzeughaftpflichtversicherung and related documents</option></select></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Many options (open it, live)</figcaption><select class="ks-select" aria-label="Many options select" id="many-options"></select></figure>
+        </div>
+        <h3 class="sink-sub">Sizes</h3>
+        <div class="sink-grid sink-grid--wide">
+          <select class="ks-select ks-select--sm" aria-label="Small select"><option>Small</option></select>
+          <select class="ks-select" aria-label="Medium select"><option>Medium</option></select>
+          <select class="ks-select ks-select--lg" aria-label="Large select"><option>Large</option></select>
+        </div>
+      </section>
+
+      <section class="sink-section" id="checkbox">
+        <h2>Checkbox</h2>
+        <div class="sink-grid">
+          <label class="ks-choice"><input class="ks-checkbox" type="checkbox">Default</label>
+          <label class="ks-choice"><input class="ks-checkbox" type="checkbox" data-force-state="hover">Hover (forced)</label>
+          <label class="ks-choice"><input class="ks-checkbox" type="checkbox" data-force-state="focus">Focus (forced)</label>
+          <label class="ks-choice"><input class="ks-checkbox" type="checkbox" checked>Checked</label>
+          <label class="ks-choice"><input class="ks-checkbox" type="checkbox" data-indeterminate>Indeterminate</label>
+          <label class="ks-choice ks-choice--disabled"><input class="ks-checkbox" type="checkbox" disabled>Disabled</label>
+          <label class="ks-choice ks-choice--disabled"><input class="ks-checkbox" type="checkbox" checked disabled>Disabled, checked</label>
+          <label class="ks-choice"><input class="ks-checkbox" type="checkbox" aria-invalid="true">Error</label>
+        </div>
+        <h3 class="sink-sub">Edge cases</h3>
+        <label class="ks-choice" style="max-inline-size:40ch"><input class="ks-checkbox" type="checkbox">Long wrapping label: your subscription renews automatically on 14 March unless you cancel it first</label>
+      </section>
+
+      <section class="sink-section" id="radio">
+        <h2>Radio Group</h2>
+        <fieldset class="ks-radio-group">
+          <legend>Sync frequency</legend>
+          <label class="ks-choice"><input class="ks-radio" type="radio" name="freq" checked>Checked</label>
+          <label class="ks-choice"><input class="ks-radio" type="radio" name="freq">Default</label>
+          <label class="ks-choice"><input class="ks-radio" type="radio" name="freq" data-force-state="hover">Hover (forced)</label>
+          <label class="ks-choice"><input class="ks-radio" type="radio" name="freq" data-force-state="focus">Focus (forced)</label>
+          <label class="ks-choice ks-choice--disabled"><input class="ks-radio" type="radio" name="freq" disabled>Disabled</label>
+          <label class="ks-choice"><input class="ks-radio" type="radio" name="freq" aria-invalid="true">Error</label>
+        </fieldset>
+        <h3 class="sink-sub">Edge cases</h3>
+        <fieldset class="ks-radio-group ks-radio-group--row" style="margin-block-end:var(--space-3)">
+          <legend>Horizontal layout</legend>
+          <label class="ks-choice"><input class="ks-radio" type="radio" name="layout" checked>Daily</label>
+          <label class="ks-choice"><input class="ks-radio" type="radio" name="layout">Weekly</label>
+        </fieldset>
+        <label class="ks-choice" style="max-inline-size:40ch"><input class="ks-radio" type="radio" name="long">Long wrapping label: your subscription renews automatically on 14 March unless you cancel it first</label>
+      </section>
+
+      <section class="sink-section" id="switch">
+        <h2>Switch</h2>
+        <div class="sink-grid">
+          <label class="ks-choice"><input class="ks-switch" type="checkbox" role="switch">Default</label>
+          <label class="ks-choice"><input class="ks-switch" type="checkbox" role="switch" data-force-state="hover">Hover (forced)</label>
+          <label class="ks-choice"><input class="ks-switch" type="checkbox" role="switch" data-force-state="focus">Focus (forced)</label>
+          <label class="ks-choice"><input class="ks-switch" type="checkbox" role="switch" checked>Checked</label>
+          <label class="ks-choice ks-choice--disabled"><input class="ks-switch" type="checkbox" role="switch" disabled>Disabled</label>
+        </div>
+        <h3 class="sink-sub">Edge cases</h3>
+        <label class="ks-choice" style="max-inline-size:40ch"><input class="ks-switch" type="checkbox" role="switch">Long label: your subscription renews automatically on 14 March unless you cancel it first</label>
+      </section>
+
+      <section class="sink-section" id="form-field">
+        <h2>Form Field</h2>
+        <div class="sink-grid sink-grid--wide">
+          <div class="ks-field"><label class="ks-field__label" for="ff1">Default</label><input class="ks-input" id="ff1" value="Spring bird survey"></div>
+          <div class="ks-field"><label class="ks-field__label" for="ff2">Error</label><input class="ks-input" id="ff2" value="Spring/2026" aria-invalid="true" aria-describedby="ff2-e"><span class="ks-field__error" id="ff2-e">Names can't contain a slash.</span></div>
+          <div class="ks-field"><label class="ks-field__label" for="ff3">Success</label><input class="ks-input ks-input--success" id="ff3" value="spring-bird-survey" aria-describedby="ff3-s"><span class="ks-field__success" id="ff3-s">This address is available.</span></div>
+          <div class="ks-field"><label class="ks-field__label ks-field__label--disabled" for="ff4">Disabled</label><input class="ks-input" id="ff4" value="Archived" disabled></div>
+          <div class="ks-field"><label class="ks-field__label" for="ff5">Required <span class="ks-field__required" aria-hidden="true">*</span></label><input class="ks-input" id="ff5" required placeholder="Your team's name"></div>
+          <div class="ks-field"><label class="ks-field__label" for="ff6">Helper and error together</label><input class="ks-input" id="ff6" aria-invalid="true" aria-describedby="ff6-h ff6-e" value="ab"><span class="ks-field__help" id="ff6-h">Use 3 to 30 characters.</span><span class="ks-field__error" id="ff6-e">This name is too short.</span></div>
+        </div>
+      </section>
+
+      <h2 class="sink-group-title">Layout and navigation</h2>
+
+      <section class="sink-section" id="card">
+        <h2>Card</h2>
+        <div class="sink-grid sink-grid--wide">
+          <figure class="sink-sample sink-sample--fill"><figcaption>Plain</figcaption><div class="ks-card"><h3 class="ks-card__title">River samples</h3><p class="ks-card__body">14 notes · Updated yesterday</p></div></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Elevated</figcaption><div class="ks-card ks-card--elevated"><h3 class="ks-card__title">River samples</h3><p class="ks-card__body">14 notes · Updated yesterday</p></div></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Interactive</figcaption><a class="ks-card ks-card--interactive" href="#card"><h3 class="ks-card__title">River samples</h3><p class="ks-card__body">14 notes · Updated yesterday</p></a></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Interactive, hover (forced)</figcaption><a class="ks-card ks-card--interactive" href="#card" data-force-state="hover"><h3 class="ks-card__title">River samples</h3><p class="ks-card__body">14 notes · Updated yesterday</p></a></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Interactive, focus (forced)</figcaption><a class="ks-card ks-card--interactive" href="#card" data-force-state="focus"><h3 class="ks-card__title">River samples</h3><p class="ks-card__body">14 notes · Updated yesterday</p></a></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>With media</figcaption><div class="ks-card"><div class="ks-card__media" aria-hidden="true">Cover image</div><h3 class="ks-card__title">North ridge</h3><p class="ks-card__body">8 photos</p></div></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>With actions</figcaption><div class="ks-card"><h3 class="ks-card__title">Invite your team</h3><p class="ks-card__body">Share notebooks and review together.</p><div class="ks-card__actions"><button class="ks-button ks-button--primary ks-button--sm" type="button">Invite</button><button class="ks-button ks-button--ghost ks-button--sm" type="button">Later</button></div></div></figure>
+          <figure class="sink-sample sink-sample--fill"><figcaption>Long title</figcaption><div class="ks-card"><h3 class="ks-card__title">Kraftfahrzeughaftpflichtversicherung</h3><p class="ks-card__body">A long unbroken word must not overflow the card.</p></div></figure>
+        </div>
+      </section>
+
+      <section class="sink-section" id="tabs">
+        <h2>Tabs</h2>
+        <p>Click a tab or use the arrow keys.</p>
+        <div class="ks-tabs" data-tabs>
+          <div class="ks-tabs__list" role="tablist" aria-label="Notebook sections">
+            <button class="ks-tab" role="tab" type="button" aria-selected="true" aria-controls="tab-p1" id="tab-1">Notes <span class="ks-badge">14</span></button>
+            <button class="ks-tab" role="tab" type="button" aria-selected="false" aria-controls="tab-p2" id="tab-2" tabindex="-1">Photos</button>
+            <button class="ks-tab" role="tab" type="button" aria-selected="false" aria-controls="tab-p2" id="tab-3" tabindex="-1" data-force-state="hover">Hover (forced)</button>
+            <button class="ks-tab" role="tab" type="button" aria-selected="false" aria-controls="tab-p2" id="tab-4" tabindex="-1" data-force-state="focus">Focus (forced)</button>
+            <button class="ks-tab" role="tab" type="button" aria-selected="false" id="tab-5" disabled>Disabled</button>
+          </div>
+          <div class="ks-tabs__panel" role="tabpanel" id="tab-p1" aria-labelledby="tab-1">Two pairs nesting near the north ridge. Heavy rain after noon.</div>
+          <div class="ks-tabs__panel" role="tabpanel" id="tab-p2" aria-labelledby="tab-2" hidden>Eight photos from the north ridge.</div>
+        </div>
+        <h3 class="sink-sub">Edge cases: many tabs overflowing</h3>
+        <div class="ks-tabs__list" role="tablist" aria-label="Many sections example" style="max-inline-size:calc(var(--space-20) * 4)">
+          <button class="ks-tab" role="tab" type="button" aria-selected="true">Overview</button>
+          <button class="ks-tab" role="tab" type="button" aria-selected="false" tabindex="-1">Observations</button>
+          <button class="ks-tab" role="tab" type="button" aria-selected="false" tabindex="-1">Locations</button>
+          <button class="ks-tab" role="tab" type="button" aria-selected="false" tabindex="-1">Attachments</button>
+          <button class="ks-tab" role="tab" type="button" aria-selected="false" tabindex="-1">Collaborators</button>
+        </div>
+      </section>
+
+      <h2 class="sink-group-title">Feedback</h2>
+
+      <section class="sink-section" id="badge">
+        <h2>Badge</h2>
+        <div class="sink-row">
+          <span class="ks-badge">Draft</span>
+          <span class="ks-badge ks-badge--info">Syncing</span>
+          <span class="ks-badge ks-badge--success">Reviewed</span>
+          <span class="ks-badge ks-badge--warning">Needs review</span>
+          <span class="ks-badge ks-badge--danger">Failed</span>
+        </div>
+        <h3 class="sink-sub">Edge cases</h3>
+        <div class="sink-row">
+          <span class="ks-badge ks-badge--danger">99+</span>
+          <span class="ks-badge ks-badge--success"><svg class="ks-icon" style="inline-size:var(--space-3);block-size:var(--space-3)" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>With icon</span>
+        </div>
+      </section>
+
+      <section class="sink-section" id="alert">
+        <h2>Alert</h2>
+        <div style="display:grid;gap:var(--space-3);max-inline-size:70ch">
+          <div class="ks-alert ks-alert--info" role="status"><div class="ks-alert__content"><strong class="ks-alert__title">Sync paused</strong>Notes will sync when you're back online.</div></div>
+          <div class="ks-alert ks-alert--success" role="status"><div class="ks-alert__content"><strong class="ks-alert__title">Export finished</strong>Your 14 notes are ready.</div></div>
+          <div class="ks-alert ks-alert--warning" role="status"><div class="ks-alert__content"><strong class="ks-alert__title">Storage almost full</strong>You've used 92% of your plan.</div></div>
+          <div class="ks-alert ks-alert--danger" role="status"><div class="ks-alert__content"><strong class="ks-alert__title">Upload failed</strong>Check your connection and try again.</div></div>
+        </div>
+        <h3 class="sink-sub">Edge cases</h3>
+        <div style="display:grid;gap:var(--space-3);max-inline-size:70ch">
+          <div class="ks-alert ks-alert--info"><div class="ks-alert__content">With action. Version 2 of this notebook is available. <a class="ks-link" href="#alert">Review changes</a></div></div>
+          <div class="ks-alert ks-alert--warning"><div class="ks-alert__content">Dismissible. Your subscription renews automatically on 14 March unless you cancel it first.</div><button class="ks-icon-button ks-icon-button--ghost ks-icon-button--sm" type="button" aria-label="Dismiss" style="color:inherit" data-dismiss><svg class="ks-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+          <div class="ks-alert ks-alert--danger"><div class="ks-alert__content"><strong class="ks-alert__title">Multi-line body</strong>We couldn't save your last three notes because the notebook was changed on another device. Copy your text somewhere safe, reload the page, and paste it back in.</div></div>
+        </div>
+      </section>
+
+      <section class="sink-section" id="spinner">
+        <h2>Spinner</h2>
+        <div class="sink-row">
+          <span class="ks-spinner ks-spinner--sm" role="status" aria-label="Loading"></span>
+          <span class="ks-spinner" role="status" aria-label="Loading"></span>
+          <span class="ks-spinner ks-spinner--lg" role="status" aria-label="Loading"></span>
+        </div>
+        <h3 class="sink-sub">Edge cases</h3>
+        <div class="sink-row">
+          <button class="ks-button ks-button--primary" type="button" aria-busy="true"><span class="ks-spinner ks-spinner--sm" aria-hidden="true"></span>Saving</button>
+          <span style="padding:var(--space-3);background:var(--color-bg-inverse);color:var(--color-text-inverse);border-radius:var(--radius-md);display:inline-flex"><span class="ks-spinner" role="status" aria-label="Loading on a dark surface"></span></span>
+        </div>
+      </section>
+
+      <h2 class="sink-group-title">Overlays</h2>
+
+      <section class="sink-section" id="dialog">
+        <h2>Dialog</h2>
+        <p>Live triggers open the real dialog. Focus moves in and returns on close, and Escape closes it.</p>
+        <div class="sink-row">
+          <button class="ks-button ks-button--secondary" type="button" data-open="dialog-sm">Small</button>
+          <button class="ks-button ks-button--secondary" type="button" data-open="dialog-md">Medium</button>
+          <button class="ks-button ks-button--secondary" type="button" data-open="dialog-lg">Large, scrolling body</button>
+          <button class="ks-button ks-button--danger" type="button" data-open="dialog-danger">Destructive</button>
+        </div>
+
+        <h3 class="sink-sub">Open appearance (static preview)</h3>
+        <div class="sink-frame">
+          <div class="ks-dialog ks-dialog--inline ks-dialog--sm" style="max-inline-size:100%">
+            <div class="ks-dialog__panel">
+              <h4 class="ks-dialog__title">Kraftfahrzeughaftpflichtversicherung</h4>
+              <p class="ks-dialog__body">A long title must wrap inside the dialog.</p>
+              <div class="ks-dialog__actions"><button class="ks-button ks-button--ghost" type="button">Cancel</button><button class="ks-button ks-button--primary" type="button">Save</button></div>
+            </div>
+          </div>
+        </div>
+
+        <dialog class="ks-dialog ks-dialog--sm" id="dialog-sm" aria-labelledby="d1"><div class="ks-dialog__panel"><h3 class="ks-dialog__title" id="d1">Rename notebook</h3><p class="ks-dialog__body">Choose a name your team will recognise.</p><form method="dialog" class="ks-dialog__actions"><button class="ks-button ks-button--ghost">Cancel</button><button class="ks-button ks-button--primary">Rename</button></form></div></dialog>
+        <dialog class="ks-dialog" id="dialog-md" aria-labelledby="d2"><div class="ks-dialog__panel"><h3 class="ks-dialog__title" id="d2">Share notebook</h3><p class="ks-dialog__body">People you invite can read and comment on every note.</p><div class="ks-field"><label class="ks-field__label" for="d2-email">Team name</label><input class="ks-input" id="d2-email" placeholder="North ridge crew"></div><form method="dialog" class="ks-dialog__actions"><button class="ks-button ks-button--ghost">Cancel</button><button class="ks-button ks-button--primary">Share</button></form></div></dialog>
+        <dialog class="ks-dialog ks-dialog--lg" id="dialog-lg" aria-labelledby="d3"><div class="ks-dialog__panel"><h3 class="ks-dialog__title" id="d3">Field guide terms</h3><p class="ks-dialog__body" tabindex="0" id="d3-body"></p><form method="dialog" class="ks-dialog__actions"><button class="ks-button ks-button--primary">Close</button></form></div></dialog>
+        <dialog class="ks-dialog ks-dialog--sm" id="dialog-danger" aria-labelledby="d4"><div class="ks-dialog__panel"><h3 class="ks-dialog__title" id="d4">Delete this notebook?</h3><p class="ks-dialog__body">Its 14 notes will be removed for everyone. This can't be undone.</p><form method="dialog" class="ks-dialog__actions"><button class="ks-button ks-button--ghost">Keep notebook</button><button class="ks-button ks-button--danger">Delete notebook</button></form></div></dialog>
+      </section>
+
+      <section class="sink-section" id="tooltip">
+        <h2>Tooltip</h2>
+        <div class="sink-grid sink-grid--wide">
+          <figure class="sink-sample"><figcaption>Live: hover or tab to the button</figcaption>
+            <span class="ks-tooltip-anchor" style="margin-block-start:var(--space-8)"><button class="ks-button ks-button--secondary" type="button" aria-describedby="tt1">Sync now</button><span class="ks-tooltip" role="tooltip" id="tt1">Last synced 2 minutes ago</span></span></figure>
+          <figure class="sink-sample"><figcaption>Open (forced)</figcaption><span class="ks-tooltip ks-tooltip--inline" data-force-state="open">Last synced 2 minutes ago</span></figure>
+          <figure class="sink-sample"><figcaption>Long text</figcaption><span class="ks-tooltip ks-tooltip--inline" data-force-state="open">Your subscription renews automatically on 14 March unless you cancel it first</span></figure>
+        </div>
+        <p style="margin-block-start:var(--space-3);color:var(--color-text-muted);font-size:var(--typography-body-sm-font-size)">Near a viewport edge: not repositioned. This simple CSS tooltip can clip at the edge, and is declared as a known limit under Coverage.</p>
+      </section>
+
+      <h2 class="sink-group-title">Compositions</h2>
+
+      <section class="sink-section" id="compositions">
+        <h2>Real screens</h2>
+        <p>Built only from the components and tokens above.</p>
+        <h3 class="sink-sub">Settings form, with validation showing</h3>
+        <form class="sink-screen" onsubmit="return false">
+          <h3>Notebook settings</h3>
+          <div class="ks-field"><label class="ks-field__label" for="c-name">Name <span class="ks-field__required" aria-hidden="true">*</span></label><input class="ks-input" id="c-name" value="Spring/2026" aria-invalid="true" aria-describedby="c-name-e"><span class="ks-field__error" id="c-name-e">Names can't contain a slash.</span></div>
+          <div class="ks-field"><label class="ks-field__label" for="c-summary">Summary</label><textarea class="ks-textarea" id="c-summary">Bird counts along the north ridge, every morning in April.</textarea></div>
+          <div class="ks-field"><label class="ks-field__label" for="c-visibility">Visibility</label><select class="ks-select" id="c-visibility"><option>Only my team</option><option>Anyone with the link</option></select></div>
+          <label class="ks-choice"><input class="ks-switch" type="checkbox" role="switch" checked>Sync automatically</label>
+          <label class="ks-choice"><input class="ks-checkbox" type="checkbox">Email me a weekly summary</label>
+          <div class="ks-alert ks-alert--warning"><div class="ks-alert__content">Changes apply for everyone on your team.</div></div>
+          <div class="sink-row"><button class="ks-button ks-button--primary" type="submit">Save changes</button><button class="ks-button ks-button--ghost" type="button">Cancel</button></div>
+        </form>
+
+        <h3 class="sink-sub">Notebook overview</h3>
+        <div class="sink-screen sink-screen--wide">
+          <div class="sink-row" style="justify-content:space-between"><h3>Your notebooks</h3><button class="ks-button ks-button--primary" type="button"><svg class="ks-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>New notebook</button></div>
+          <div class="ks-tabs__list" role="tablist" aria-label="Notebook filters"><button class="ks-tab" role="tab" type="button" aria-selected="true">All</button><button class="ks-tab" role="tab" type="button" aria-selected="false" tabindex="-1">Shared</button><button class="ks-tab" role="tab" type="button" aria-selected="false" tabindex="-1">Archived</button></div>
+          <div class="sink-screen__cards">
+            <a class="ks-card ks-card--interactive" href="#compositions"><span class="ks-badge ks-badge--success" style="align-self:flex-start">Reviewed</span><h4 class="ks-card__title">Spring bird survey</h4><p class="ks-card__body">42 notes · Updated today</p></a>
+            <a class="ks-card ks-card--interactive" href="#compositions"><span class="ks-badge ks-badge--warning" style="align-self:flex-start">Needs review</span><h4 class="ks-card__title">River samples</h4><p class="ks-card__body">14 notes · Updated yesterday</p></a>
+            <a class="ks-card ks-card--interactive" href="#compositions"><span class="ks-badge ks-badge--info" style="align-self:flex-start">Syncing</span><h4 class="ks-card__title">North ridge photos</h4><p class="ks-card__body">8 notes · Updated 3 days ago</p></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="sink-section" id="coverage">
+        <h2>Coverage</h2>
+        <p>All 17 starter components are rendered. Known limits:</p>
+        <ul>
+          <li>Tooltip does not reposition near a viewport edge.</li>
+          <li>Select's open list is drawn by the browser, so its open state is live only.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <script src="kitchen-sink.js"></script>
+</body>
+</html>

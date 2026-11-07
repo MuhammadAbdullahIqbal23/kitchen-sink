@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: unknown-stack-fallback
+expected_outcome: |
+  The agent uses the unknown-stack protocol to produce a Streamlit page showing real widgets, and declares what Streamlit cannot express as gaps.
+context:
+  scaffold_script: place-files.sh

@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: empty-folder-one-colour
+expected_outcome: |
+  A plain HTML and CSS starter design system with a kitchen sink page, built from the brand colour with no installs, and verified.

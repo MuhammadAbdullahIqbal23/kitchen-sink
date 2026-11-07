@@ -1,0 +1,414 @@
+{
+  "version": 1,
+  "stack": {
+    "adapter": "web-other",
+    "framework": "html"
+  },
+  "scope": "system",
+  "tier": "starter",
+  "entry": {
+    "files": [
+      "index.html",
+      "kitchen-sink.js"
+    ],
+    "run": "Open index.html in a browser",
+    "url": "index.html",
+    "gate": "none: sample folder, nothing deploys it"
+  },
+  "tokens": {
+    "source": "design-tokens.json",
+    "outputs": [
+      "tokens.css"
+    ]
+  },
+  "foundations": {
+    "color": true,
+    "typography": true,
+    "spacing": true,
+    "radius": true,
+    "elevation": true,
+    "motion": true,
+    "icons": "na: sample has no icon set beyond a few inline glyphs"
+  },
+  "controls": {
+    "theme": true,
+    "direction": true,
+    "textScale": false,
+    "density": false
+  },
+  "compositions": [
+    "Settings form with validation",
+    "Notebook overview"
+  ],
+  "generatedFiles": [
+    "components.css",
+    "kitchen-sink.css"
+  ],
+  "components": [
+    {
+      "id": "button",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-button",
+      "variants": [
+        "primary",
+        "secondary",
+        "ghost",
+        "danger"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "edge": [
+        "long label",
+        "icon plus label"
+      ],
+      "states": {
+        "default": "static",
+        "hover": "forced",
+        "focus": "forced",
+        "active": "forced",
+        "disabled": "static",
+        "loading": "static"
+      }
+    },
+    {
+      "id": "icon-button",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-icon-button",
+      "variants": [
+        "primary",
+        "secondary",
+        "ghost"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "edge": [
+        "with badge"
+      ],
+      "states": {
+        "default": "static",
+        "hover": "forced",
+        "focus": "forced",
+        "active": "forced",
+        "disabled": "static"
+      }
+    },
+    {
+      "id": "link",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-link",
+      "variants": [
+        "inline",
+        "standalone"
+      ],
+      "sizes": [],
+      "edge": [
+        "wraps across lines",
+        "external link"
+      ],
+      "states": {
+        "default": "static",
+        "hover": "forced",
+        "focus": "forced",
+        "active": "forced"
+      }
+    },
+    {
+      "id": "text-input",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-input",
+      "variants": [],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "edge": [
+        "prefix and suffix",
+        "long value",
+        "placeholder only"
+      ],
+      "states": {
+        "default": "static",
+        "hover": "forced",
+        "focus": "forced",
+        "disabled": "static",
+        "readonly": "static",
+        "error": "static",
+        "success": "static",
+        "filled": "static"
+      }
+    },
+    {
+      "id": "textarea",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-textarea",
+      "variants": [],
+      "sizes": [],
+      "edge": [
+        "character count",
+        "very long value"
+      ],
+      "states": {
+        "default": "static",
+        "hover": "forced",
+        "focus": "forced",
+        "disabled": "static",
+        "readonly": "static",
+        "error": "static",
+        "filled": "static"
+      }
+    },
+    {
+      "id": "select",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-select",
+      "variants": [],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "edge": [
+        "long option",
+        "many options"
+      ],
+      "states": {
+        "default": "static",
+        "hover": "forced",
+        "focus": "forced",
+        "disabled": "static",
+        "error": "static",
+        "open": "live",
+        "filled": "static"
+      }
+    },
+    {
+      "id": "checkbox",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-checkbox",
+      "variants": [],
+      "sizes": [],
+      "edge": [
+        "long wrapping label"
+      ],
+      "states": {
+        "default": "static",
+        "hover": "forced",
+        "focus": "forced",
+        "disabled": "static",
+        "checked": "static",
+        "indeterminate": "static",
+        "error": "static"
+      }
+    },
+    {
+      "id": "radio",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-radio-group",
+      "variants": [],
+      "sizes": [],
+      "edge": [
+        "long wrapping label",
+        "horizontal layout"
+      ],
+      "states": {
+        "default": "static",
+        "hover": "forced",
+        "focus": "forced",
+        "disabled": "static",
+        "checked": "static",
+        "error": "static"
+      }
+    },
+    {
+      "id": "switch",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-switch",
+      "variants": [],
+      "sizes": [],
+      "edge": [
+        "long label"
+      ],
+      "states": {
+        "default": "static",
+        "hover": "forced",
+        "focus": "forced",
+        "disabled": "static",
+        "checked": "static"
+      }
+    },
+    {
+      "id": "form-field",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-field",
+      "variants": [],
+      "sizes": [],
+      "edge": [
+        "required marker",
+        "helper text and error together"
+      ],
+      "states": {
+        "default": "static",
+        "error": "static",
+        "success": "static",
+        "disabled": "static"
+      }
+    },
+    {
+      "id": "card",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-card",
+      "variants": [
+        "plain",
+        "elevated",
+        "interactive"
+      ],
+      "sizes": [],
+      "edge": [
+        "with media",
+        "with actions",
+        "long title"
+      ],
+      "states": {
+        "default": "static",
+        "hover": "forced",
+        "focus": "forced"
+      }
+    },
+    {
+      "id": "badge",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-badge",
+      "variants": [
+        "neutral",
+        "info",
+        "success",
+        "warning",
+        "danger"
+      ],
+      "sizes": [],
+      "edge": [
+        "count 99+",
+        "with icon"
+      ],
+      "states": {
+        "default": "static"
+      }
+    },
+    {
+      "id": "alert",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-alert",
+      "variants": [
+        "info",
+        "success",
+        "warning",
+        "danger"
+      ],
+      "sizes": [],
+      "edge": [
+        "with action",
+        "dismissible",
+        "multi-line body"
+      ],
+      "states": {
+        "default": "static"
+      }
+    },
+    {
+      "id": "dialog",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-dialog",
+      "variants": [
+        "default",
+        "destructive"
+      ],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "edge": [
+        "scrolling body",
+        "long title"
+      ],
+      "states": {
+        "open": "static"
+      }
+    },
+    {
+      "id": "tabs",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-tabs",
+      "variants": [],
+      "sizes": [],
+      "edge": [
+        "many tabs overflowing",
+        "tab with count"
+      ],
+      "states": {
+        "default": "static",
+        "hover": "forced",
+        "focus": "forced",
+        "disabled": "static",
+        "selected": "static"
+      }
+    },
+    {
+      "id": "tooltip",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-tooltip",
+      "variants": [],
+      "sizes": [],
+      "edge": [
+        "long text",
+        "near viewport edge"
+      ],
+      "states": {
+        "open": "forced"
+      }
+    },
+    {
+      "id": "spinner",
+      "source": "generated",
+      "path": "components.css",
+      "marker": "ks-spinner",
+      "variants": [],
+      "sizes": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "edge": [
+        "inside a button",
+        "on a dark surface"
+      ],
+      "states": {
+        "default": "static"
+      }
+    }
+  ],
+  "gaps": []
+}

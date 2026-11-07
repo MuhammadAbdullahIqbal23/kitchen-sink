@@ -1,0 +1,6 @@
+schema_version: "1.1"
+name: flutter-widget-gallery
+expected_outcome: |
+  A separate Flutter entry point renders the app's real widgets and theme, leaving lib/main.dart alone, with honest handling of states that cannot be forced.
+context:
+  scaffold_script: place-files.sh

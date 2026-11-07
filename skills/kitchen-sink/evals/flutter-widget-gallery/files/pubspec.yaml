@@ -1,0 +1,10 @@
+name: trailhead
+description: A trail tracking app.
+publish_to: none
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+flutter:
+  uses-material-design: true
