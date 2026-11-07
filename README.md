@@ -21,11 +21,11 @@ The skill is the folder [`skills/kitchen-sink`](skills/kitchen-sink).
 **Claude Code:** copy it into your skills folder.
 
 ```bash
-git clone https://github.com/<owner>/<repo>.git
+git clone https://github.com/MuhammadAbdullahIqbal23/kitchen-sink.git
 ```
 
 ```bash
-cp -r <repo>/skills/kitchen-sink ~/.claude/skills/kitchen-sink
+cp -r kitchen-sink/skills/kitchen-sink ~/.claude/skills/kitchen-sink
 ```
 
 To share it with a team, use `.claude/skills/kitchen-sink` inside your project instead.
@@ -35,7 +35,7 @@ To share it with a team, use `.claude/skills/kitchen-sink` inside your project i
 **Other agents:** the skill follows the open [Agent Skills format](https://agentskills.io/specification), so it should work wherever that format is supported. Check your agent's docs for its skills folder, or try the community installer:
 
 ```bash
-npx skills add <owner>/<repo>
+npx skills add MuhammadAbdullahIqbal23/kitchen-sink
 ```
 
 ## Use
