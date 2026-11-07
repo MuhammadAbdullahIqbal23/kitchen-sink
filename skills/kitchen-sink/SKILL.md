@@ -4,7 +4,7 @@ description: Build a kitchen sink, one living page or screen showing every desig
 license: MIT
 compatibility: Works in any agent that can read and edit files and run shell commands. Helper scripts need Node 18+ and have manual fallbacks when Node is absent.
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Kitchen Sink

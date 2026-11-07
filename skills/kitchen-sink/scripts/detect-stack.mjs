@@ -10,7 +10,11 @@ const IGNORED = new Set([
   ".next", ".nuxt", ".svelte-kit", ".angular", ".output", ".turbo", ".cache", ".dart_tool", ".gradle",
   ".idea", ".vscode", "Pods", "DerivedData", "__pycache__", ".venv", "venv", "env", "coverage",
   "Library", "Temp", "Binaries", "Intermediate", "Saved", "public", "storybook-static", ".expo",
+  // Agent folders. A project-level install puts this skill here, and its files aren't the project's.
+  ".claude", ".agents", ".agent", ".cursor", ".codex", ".gemini", ".windsurf", ".opencode", ".continue", ".cline", ".roo", ".kiro", ".goose",
 ]);
+// Files that don't count as project content when deciding whether a folder is empty.
+const NOT_CONTENT = /^(\..*|skills-lock\.json|readme(\..*)?|licen[cs]e(\..*)?)$/i;
 const MAX_DEPTH = 4;
 const MAX_ENTRIES = 30000;
 
@@ -48,6 +52,8 @@ let truncated = false;
   } catch {
     return;
   }
+  // Installers use many folder names, so also recognise any installed skill by its SKILL.md.
+  if (dir !== root && entries.some((e) => e.isFile() && e.name === "SKILL.md")) return;
   for (const entry of entries) {
     if (++visited > MAX_ENTRIES) {
       truncated = true;
@@ -333,7 +339,7 @@ const distinctApps = new Set(unique.filter((c) => c.confidence === "high").map((
 
 const report = {
   root: toPosix(root),
-  empty: files.length === 0,
+  empty: files.every((f) => NOT_CONTENT.test(basename(f))),
   primary,
   candidates: unique,
   ambiguous: distinctApps.size > 1,

@@ -216,6 +216,38 @@ test("detect handles empty and unknown projects", () => {
   const odd = detect(fixture("odd", { "main.zig": "const std = @import(\"std\");" }));
   assert(odd.empty === false && odd.primary === null, "unknown project misreported");
 });
+test("detect ignores this skill when it's installed inside the project", () => {
+  const installed = {
+    "SKILL.md": "---\nname: kitchen-sink\n---\n",
+    "references/tokens.md": "x",
+    "scripts/tokens.mjs": "x",
+    "assets/component-catalog.json": "{}",
+    "references/sink-spec.md": "kitchen sink",
+    "evals/case/files/package.json": pkg({ react: "19" }),
+  };
+  const withSkill = (extra) => {
+    const files = { "skills-lock.json": "{}", ".gitignore": "x", ...extra };
+    for (const [path, text] of Object.entries(installed)) {
+      files[`.claude/skills/kitchen-sink/${path}`] = text;
+      files[`.agents/skills/kitchen-sink/${path}`] = text;
+      files[`agent/skills/kitchen-sink/${path}`] = text;
+    }
+    return files;
+  };
+  const empty = detect(fixture("installed-empty", withSkill({})));
+  assert(empty.empty === true, "project with only the skill should count as empty");
+  assert(empty.primary === null, `primary ${JSON.stringify(empty.primary)}`);
+  assert(empty.tokenSources.length === 0, `tokens ${empty.tokenSources}`);
+  assert(empty.existingShowcase.length === 0, `showcase ${empty.existingShowcase}`);
+  const real = detect(fixture("installed-real", withSkill({ "package.json": pkg({ vue: "3" }), "src/tokens.css": "x" })));
+  assert(real.empty === false && real.primary?.framework === "vue", "real project should still be detected");
+  assert(real.tokenSources.join() === "src/tokens.css", `tokens ${real.tokenSources}`);
+  assert(real.existingShowcase.length === 0, `showcase ${real.existingShowcase}`);
+});
+test("detect still counts a folder with real content as not empty", () => {
+  assert(detect(fixture("readme-only", { "README.md": "x", "LICENSE": "x" })).empty === true, "README and LICENSE alone are empty");
+  assert(detect(fixture("notes", { "README.md": "x", "notes.txt": "x" })).empty === false, "other files are content");
+});
 test("detect ignores node_modules and survives bad manifests", () => {
   const dir = fixture("noise", { "node_modules/x/package.json": pkg({ next: "1" }), "package.json": "{not json", "pubspec.yaml": "flutter:\n  uses: true\n" });
   const report = detect(dir);

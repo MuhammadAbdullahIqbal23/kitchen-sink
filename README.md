@@ -18,7 +18,13 @@ See [examples/html-starter](examples/html-starter) for a real result. Open its `
 
 The skill is the folder [`skills/kitchen-sink`](skills/kitchen-sink).
 
-**Claude Code:** copy it into your skills folder.
+**Claude Code:** install it with the community installer, adding `-g` to install for all your projects.
+
+```bash
+npx skills add MuhammadAbdullahIqbal23/kitchen-sink --agent claude-code
+```
+
+Or copy it into your skills folder yourself.
 
 ```bash
 git clone https://github.com/MuhammadAbdullahIqbal23/kitchen-sink.git
@@ -32,7 +38,7 @@ To share it with a team, use `.claude/skills/kitchen-sink` inside your project i
 
 **Claude apps:** upload `kitchen-sink.skill` from the repository's releases in your skills settings.
 
-**Other agents:** the skill follows the open [Agent Skills format](https://agentskills.io/specification), so it should work wherever that format is supported. Check your agent's docs for its skills folder, or try the community installer:
+**Other agents:** the skill follows the open [Agent Skills format](https://agentskills.io/specification), so it should work wherever that format is supported. Check your agent's docs for its skills folder, or use the community installer ([vercel-labs/skills](https://github.com/vercel-labs/skills)), which asks which agents to install for. It has only been tested here with Claude Code and its shared `.agents/skills` folder:
 
 ```bash
 npx skills add MuhammadAbdullahIqbal23/kitchen-sink
