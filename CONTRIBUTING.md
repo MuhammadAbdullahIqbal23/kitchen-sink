@@ -51,3 +51,7 @@ claude plugin eval skills/kitchen-sink --allow-tools Write,Edit,Bash --scaffold
 ## What belongs here
 
 Keep the skill about building kitchen sinks. Generated sinks must contain nothing that surprises the person who asked for them: no analytics, no network calls, and no dependencies added without asking.
+
+## Branches and releases
+
+Open pull requests against `dev`. When CI passes on `dev`, a workflow opens a pull request from `dev` to `main`. When that is merged and CI passes on `main`, a draft release is created for the version in `SKILL.md`, with its notes taken from the matching `CHANGELOG.md` section. A maintainer publishes the draft by hand. To release, bump `metadata.version` in `SKILL.md` and add a `## <version>` section to `CHANGELOG.md` in the same change.

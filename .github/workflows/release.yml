@@ -1,0 +1,44 @@
+name: Draft release
+
+# When CI passes on a push to main, draft a release for the version in SKILL.md
+# if that version has no release yet. Publishing stays manual.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  draft:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+      - name: Read version
+        id: v
+        run: echo "tag=v$(bash .github/scripts/version.sh)" >> "$GITHUB_OUTPUT"
+      - name: Skip if released or drafted
+        id: check
+        run: |
+          if gh release view "${{ steps.v.outputs.tag }}" >/dev/null 2>&1; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"; echo "${{ steps.v.outputs.tag }} already exists"
+          fi
+      - name: Package skill
+        if: steps.check.outputs.skip != 'true'
+        run: bash .github/scripts/package.sh
+      - name: Create draft
+        if: steps.check.outputs.skip != 'true'
+        run: |
+          v="${{ steps.v.outputs.tag }}"
+          awk -v h="## ${v#v}" '$0==h{on=1;next} /^## /{on=0} on' CHANGELOG.md > notes.md
+          printf '\n## Upgrade\n\n- **Claude apps:** download `kitchen-sink.skill` below and upload it in your skills settings.\n- **Installed with `npx skills`:** run `npx skills update`.\n' >> notes.md
+          gh release create "$v" dist/kitchen-sink.skill --draft --title "$v" \
+            --target "${{ github.event.workflow_run.head_sha }}" --notes-file notes.md

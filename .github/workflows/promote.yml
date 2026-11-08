@@ -1,0 +1,31 @@
+name: Promote dev to main
+
+# When CI passes on a push to dev, open (or reuse) a pull request from dev to main.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [dev]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  open-pr:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Open pull request
+        run: |
+          if [ "$(gh api "repos/$GH_REPO/compare/main...dev" -q .ahead_by)" = "0" ]; then
+            echo "dev has nothing new for main"; exit 0
+          fi
+          existing=$(gh pr list --base main --head dev --state open --json url -q '.[0].url')
+          if [ -n "$existing" ]; then echo "already open: $existing"; exit 0; fi
+          gh pr create --base main --head dev \
+            --title "Promote dev to main" \
+            --body "CI passed on dev at ${{ github.event.workflow_run.head_sha }}. Merging this creates a draft release once CI passes on main."

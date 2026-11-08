@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [dev, main]
+  pull_request:
+    branches: [dev, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [18, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: node tests/run.mjs
+      - run: node skills/kitchen-sink/scripts/verify-sink.mjs examples/html-starter
+
+  integration:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Version matches changelog
+        run: bash .github/scripts/version.sh
+      - name: Package skill
+        run: bash .github/scripts/package.sh
+      - name: Run packaged skill against the example
+        run: |
+          mkdir -p /tmp/install && unzip -q dist/kitchen-sink.skill -d /tmp/install
+          cp -r examples/html-starter /tmp/project
+          node /tmp/install/kitchen-sink/scripts/verify-sink.mjs /tmp/project
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kitchen-sink.skill
+          path: dist/kitchen-sink.skill
