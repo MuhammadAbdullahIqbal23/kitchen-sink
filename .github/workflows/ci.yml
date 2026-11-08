@@ -42,7 +42,7 @@ jobs:
           mkdir -p /tmp/install && unzip -q dist/kitchen-sink.skill -d /tmp/install
           cp -r examples/html-starter /tmp/project
           node /tmp/install/kitchen-sink/scripts/verify-sink.mjs /tmp/project
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: kitchen-sink.skill
           path: dist/kitchen-sink.skill
