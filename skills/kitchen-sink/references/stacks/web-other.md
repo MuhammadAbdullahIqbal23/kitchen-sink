@@ -32,6 +32,13 @@ kitchen-sink/
 | Alpine, htmx | Plain HTML page, served by the project | As for plain HTML or the server's dev check | `x-data` for controls. Stub htmx requests so the page makes no network calls. |
 | Leptos, Dioxus, Yew | A dev-only route behind a Cargo feature, such as `--features kitchen-sink` | Feature off by default | Tokens via CSS file. Build with `trunk` or the project's tool. |
 
+## Presentation
+
+- Plain HTML: the web rules in `sink-spec.md` go in `kitchen-sink.css`, and the colour hash in `kitchen-sink.js`, which sets a variable on each tile: `tile.style.setProperty("--decor", "var(" + decor(tile.id, entries) + ")")`.
+- Web components: keep the grid and frames in light DOM, where the sink's stylesheet reaches them. Inside a shadow root, style only through tokens and `::part()`.
+- Astro: compute decorative colour and manifest counts in the frontmatter, so they're fixed at build time and need no script.
+- Solid, Preact, Qwik: as for React. Compute colour during render, never randomly.
+
 ## Email (React Email, MJML)
 
 Email clients ignore most modern CSS, so the usual contract changes:
@@ -41,3 +48,4 @@ Email clients ignore most modern CSS, so the usual contract changes:
 - Build one template that shows all blocks: buttons, headings, tables, images, footers.
 - Verify by rendering with the tool's preview, and suggest a client-testing service for real clients.
 - Dark mode support varies by client. Report what you tested.
+- Presentation: no grid, hover or reduced motion. Use one column of bordered table cells, and mark tile feedback `na: email clients don't support hover`.

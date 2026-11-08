@@ -37,6 +37,13 @@ UIKit project: use a `UIViewController` with a collection or table view under `#
 - Text scale: `.dynamicTypeSize(.accessibility3)`.
 - UIKit: `overrideUserInterfaceStyle` and `semanticContentAttribute`.
 
+## Presentation
+
+- Grid: `LazyVGrid(columns: [GridItem(.adaptive(minimum: 160))])` follows the width. A row is as tall as its tallest tile, but shorter tiles don't fill it by themselves, so give each tile's background `.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)`, and check on screen that a row's tiles match.
+- Frames: a background shape filled with the project's surface colour, with its border and radius. `GroupBox` brings the system look, so use it only if the project already does.
+- Feedback: make each tile a `NavigationLink` or a `Button` with the project's `ButtonStyle`, which keeps the role and uses the title as its name. Add `.hoverEffect()` for iPadOS and visionOS pointers, and read `@Environment(\.accessibilityReduceMotion)` before animating.
+- Decorative colour: Swift's `hashValue` and `Hasher` are seeded on each launch, so write the hash, for example over `name.unicodeScalars`.
+
 ## Verify
 
 ```bash

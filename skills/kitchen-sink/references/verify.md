@@ -26,11 +26,10 @@ Start the sink and look at it. Use a browser tool, simulator, emulator or screen
 
 | Check | Web | Native |
 | --- | --- | --- |
-| Light theme, wide | Yes | Yes |
-| Dark theme, wide | Yes | Yes |
+| Each theme the tokens define, wide | Yes | Yes |
 | Right-to-left | Yes | Yes, or simulator setting |
-| Narrow width | 375 px | Smallest supported device |
-| Text scale 200% | Browser zoom | System font scale |
+| Narrowest supported width | 375 px, or narrower if the project supports it | Smallest supported device or window |
+| Largest text size | 200% browser zoom | Largest system font scale |
 
 Look for:
 
@@ -56,6 +55,27 @@ If you can't open the sink in any browser or device, say that narrow-width layou
 Screenshots taken right after a theme switch can catch colours mid-transition, and hidden or background windows may delay them further. Before calling a colour wrong, wait a moment or read the computed value.
 
 Then exercise the live items: tab through the page, open and close each overlay with the keyboard, and confirm focus returns. Reload to confirm theme choice persists if you made it persist.
+
+### Presentation
+
+Check the overview, section index, component frames and controls at the narrowest supported width, in every theme, in right-to-left and at the largest text size. Do it on every platform code path the project has, such as iOS and Android, web and native, or each desktop OS whose rendering differs, since one platform passing says nothing about another. Combine checks where it's cheap: the narrowest width with the largest text finds most overflow.
+
+Mark a check that doesn't apply as `na: <reason>` in the report, as with states. For example, text size in a terminal is `na: the terminal emulator sets the font size`.
+
+Look for tiles in a row with different heights, labels that crowd the samples, controls that cover content, and decorative colours that change on reload.
+
+Framing a sample inside another framed area narrows it by that frame's padding and border, and the loss adds up with each level. This is a common source of overflow at large text sizes, so check the most deeply framed samples first.
+
+Where the stack allows it, back the screenshots with an automated render or UI test that fails on overflow and clipping, at the narrowest width and the largest text size. Use the project's own test tools. If none fit, run the test once without adding it to the project, or ask before adding a dependency. Offer to keep it as a regression check.
+
+| Stack | Test that fails on overflow |
+| --- | --- |
+| Web | A browser test or browser tool session that fails when the `scrollWidth` check above finds anything, or when an element with hidden overflow has a `scrollWidth` larger than its `clientWidth`. Intended truncation, such as an ellipsis edge case, is fine. For 200% zoom, halve the viewport width, which gives the same layout. |
+| Flutter | A widget test with a small `tester.view.physicalSize` and a `MediaQuery` set to `TextScaler.linear(2.0)` or more. Overflow errors fail the test by themselves. |
+| Compose | A UI test using `DeviceConfigurationOverride` with `FontScale` and `ForcedSize`, which checks `hasVisualOverflow` on each text node's `TextLayoutResult`. Check that the installed test library has these. |
+| SwiftUI and UIKit | A UI test launched with `-UIPreferredContentSizeCategoryName UICTContentSizeCategoryAccessibilityXXXL` on the smallest simulator, which checks that each element's frame sits inside the window. |
+| Terminal | Render a frame at the smallest supported size, and fail if a line is wider than the terminal or a border is cut off. |
+| Others | Usually no practical automated check. Say so, and rely on screenshots. |
 
 ## Level 4: Accessibility scan
 

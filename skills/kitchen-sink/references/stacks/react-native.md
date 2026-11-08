@@ -39,6 +39,14 @@ Add a way to open it, such as a deep link (`myapp://kitchen-sink`) or a dev-only
 - Direction: `I18nManager.forceRTL()` requires an app restart, which is a poor fit for a toggle. Offer it with a reload using `expo-updates` or `DevSettings.reload()`, or mirror a section by wrapping it in `direction: "rtl"` style. Say which you chose.
 - Text scale: sample with `allowFontScaling` on and test via device settings. Show a preview by multiplying sizes only in the sink if needed.
 
+## Presentation
+
+- Grid: a `FlatList` with `numColumns` worked out from `useWindowDimensions().width`. It can't change `numColumns` on the fly, so give the list a `key` that changes with it. Give each tile `flex: 1` to share the row's width. Tiles stretch to the tallest in their row unless you set a height.
+- Frames: a `View` with border, radius and surface values from the theme, or the project's card.
+- Feedback: `Pressable` with a `style` callback that uses the theme's pressed colour, plus `accessibilityRole="button"` and an `accessibilityLabel`. Add `android_ripple` only if the app uses ripples.
+- Reduced motion: `AccessibilityInfo.isReduceMotionEnabled()`, or Reanimated's `useReducedMotion()` if it's installed.
+- Decorative colour: a hand-written string hash into the theme's palette. Never `Math.random()` in render.
+
 ## Verify
 
 `tsc --noEmit`, lint, then `npx expo start` or `npx react-native run-ios` or `run-android`. Take simulator screenshots with `xcrun simctl io booted screenshot` and `adb exec-out screencap -p`. Without a simulator, say so. Expo web can stand in for a rough layout check, but it doesn't verify native rendering.

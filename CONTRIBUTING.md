@@ -21,6 +21,7 @@ Adapters live in `skills/kitchen-sink/references/stacks/`. Before opening a pull
    - **Where the sink lives and how it's gated:** exact paths and code, kept out of release builds where possible.
    - **Forcing states:** what really works, and when to use `live`.
    - **Controls:** theme, direction, and text scale.
+   - **Presentation:** the layout grid, framed group, press or hover feedback and decorative colour, with a fallback or `na: <reason>` where a pattern doesn't fit.
    - **Verify:** the commands to run and how to see the result.
    - **Pitfalls:** what you only learn by getting it wrong.
 2. Add detection rules to `scripts/detect-stack.mjs`, and add a case to `CASES` in `tests/run.mjs`.
