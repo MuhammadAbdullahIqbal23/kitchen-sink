@@ -55,3 +55,5 @@ Keep the skill about building kitchen sinks. Generated sinks must contain nothin
 ## Branches and releases
 
 Open pull requests against `dev`. When CI passes on `dev`, a workflow opens a pull request from `dev` to `main`. When that is merged and CI passes on `main`, a draft release is created for the version in `SKILL.md`, with its notes taken from the matching `CHANGELOG.md` section. A maintainer publishes the draft by hand. To release, bump `metadata.version` in `SKILL.md` and add a `## <version>` section to `CHANGELOG.md` in the same change.
+
+`main` and `dev` only change through pull requests that pass CI, and release tags can only be created by the maintainer. Workflows on pull requests from forks wait for maintainer approval. To report a security issue, see [SECURITY.md](SECURITY.md).
