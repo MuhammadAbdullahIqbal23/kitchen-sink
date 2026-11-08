@@ -46,6 +46,13 @@ Split sections into files if the page grows past a few hundred lines. List all o
 - Direction: set `document.documentElement.dir`. Radix needs `DirectionProvider`, MUI needs `theme.direction` plus an RTL style setup, and Mantine has `DirectionProvider`. Use them if they exist. Logical properties (`margin-inline-start`, Tailwind `ms-*`) make generated components flip correctly.
 - SSR: avoid a theme flash and hydration mismatches. Read saved values in `useEffect`, or use the project's provider.
 
+## Presentation
+
+- Grid, frames and feedback: the web rules in `sink-spec.md`. With Tailwind, write them as utilities on the project's theme, such as `grid-cols-[repeat(auto-fill,minmax(min(100%,16rem),1fr))]` and `motion-safe:transition-colors`.
+- Build tiles and frames from the project's `Card` or panel if it has one, and make each tile its link component (`next/link`, the router's `Link`), so hover and focus come from its own styles.
+- MUI, Chakra, Mantine and similar: use the library's card and grid with theme values, not raw CSS.
+- Decorative colour: compute it during render from the name. Never use `Math.random()`, which also breaks hydration on server-rendered pages.
+
 ## Verify
 
 Use the scripts in `package.json`: `tsc --noEmit` if there's no type-check script, then `lint`, `build`. Run `dev` and open the route.

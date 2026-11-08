@@ -49,6 +49,13 @@ Storybook present: add one story instead.
 - Theme: `document.documentElement` attribute via `DOCUMENT` injection, or a class such as `.dark-theme`. Follow the project's existing approach.
 - Direction: `Directionality` from `@angular/cdk/bidi` with the `dir` attribute. Set it on a wrapper with `[dir]`, which CDK components respect.
 
+## Presentation
+
+- Grid, frames and feedback: the web rules in `sink-spec.md`, in the sink component's styles. View encapsulation keeps them off the samples.
+- Angular Material: `mat-card` for tiles and frames. Check that ripples and card transitions stop under reduced motion, and turn them off in the sink through the library's animation settings if they don't.
+- Tiles that jump to a section: a plain `href="#colour"` resolves against `<base href>` and leaves the sink, and the router doesn't scroll to fragments unless the whole app opts in. Scroll from the tile's click handler with `ViewportScroller.scrollToAnchor` instead.
+- Decorative colour: a `computed` signal or a pure pipe from the name.
+
 ## Verify
 
 `ng build`, `ng lint`, and `ng test` if the project uses them. Run `ng serve` and open the route.

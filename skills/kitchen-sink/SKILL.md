@@ -4,7 +4,7 @@ description: Build a kitchen sink, one living page or screen showing every desig
 license: MIT
 compatibility: Works in any agent that can read and edit files and run shell commands. Helper scripts need Node 18+ and have manual fallbacks when Node is absent.
 metadata:
-  version: "1.0.1"
+  version: "1.1.0"
 ---
 
 # Kitchen Sink
@@ -100,7 +100,7 @@ Generate missing tokens and components in the project's own conventions, in its 
 
 ### 6. Build the sink
 
-Read [references/sink-spec.md](references/sink-spec.md) and build to it, using the adapter's location, gating and state techniques. Then write `kitchen-sink.manifest.json` as described there.
+Read [references/sink-spec.md](references/sink-spec.md) and build to it, using the adapter's location, gating and state techniques. Follow its Presentation section, with the adapter's Presentation notes, for how the sink looks: an overview, a tiled section index and framed component blocks, all built from the project's own tokens and components. Then write `kitchen-sink.manifest.json` as described there.
 
 ### 7. Verify
 
@@ -110,7 +110,7 @@ Read [references/verify.md](references/verify.md). In short:
 node <skill-dir>/scripts/verify-sink.mjs <project-dir>
 ```
 
-Then build the project, run the sink, and look at it. Check light and dark, left-to-right and right-to-left, and a narrow width. Fix what you find, up to three rounds, then report what remains.
+Then build the project, run the sink, and look at it. Check every theme, left-to-right and right-to-left, the narrowest width and the largest text size, on each platform the project targets. Fix what you find, up to three rounds, then report what remains.
 
 ### 8. Report
 

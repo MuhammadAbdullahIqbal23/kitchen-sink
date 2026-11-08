@@ -63,6 +63,13 @@ Hold the settings in a small `ChangeNotifier` above `MaterialApp`:
 - Text scale: wrap with `MediaQuery` and `textScaler: TextScaler.linear(2.0)`.
 - Dialogs: `showDialog` for `live`. `Dialog` itself can render inline in a framed `SizedBox` for `static`.
 
+## Presentation
+
+- Grid: `GridView` and `SliverGrid` give every cell a fixed aspect ratio or extent, which clips tiles at large text sizes. For the index, use `LayoutBuilder` to work out the column count, then rows of `IntrinsicHeight` around a `Row` with `crossAxisAlignment: CrossAxisAlignment.stretch` and `Expanded` tiles, so a row shares a height.
+- Frames: `Card` or the project's surface widget, themed through `cardTheme`.
+- Feedback: an `InkWell` inside the card, so the theme's hover, focus and splash colours show. Wrap the tile in `Semantics(button: true)` with the title as its label. `MediaQuery.disableAnimationsOf(context)` says when to drop extra animation.
+- Decorative colour: Dart's `String.hashCode` isn't guaranteed to stay the same between runs, so write the hash. Pick from the `ColorScheme` container roles (`primaryContainer`, `secondaryContainer`, `tertiaryContainer`) with their matching `on…` colours.
+
 ## Verify
 
 ```bash

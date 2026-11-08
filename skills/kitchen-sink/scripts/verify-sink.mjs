@@ -166,7 +166,9 @@ for (const [id] of gaps) {
 // ---------- Hard-coded values in generated files ----------
 const scannable = new Set([".css", ".scss", ".less", ".tsx", ".jsx", ".ts", ".js", ".vue", ".svelte", ".astro", ".html", ".dart", ".swift", ".kt", ".xaml", ".axaml", ".qml", ".erb", ".heex", ".php", ".razor", ".cshtml", ".py", ".rs", ".go", ".tcss", ".uss"]);
 const tokenOutputs = new Set(manifest.tokens?.outputs || []);
-const COLOR_LITERAL = /#[0-9a-fA-F]{3,8}\b|\brgba?\(\s*\d|\bhsla?\(\s*\d|\bColor\(0x[0-9a-fA-F]+\)|\bColor\.fromRGBO\(|\bUIColor\(red:|\bColor\(red:/g;
+// Colour functions with literal or interpolated arguments. `rgb(var(--x))`, `color-mix(in oklch, ...)` and
+// relative colours such as `oklch(from var(--x) l c h)` derive from tokens, so they pass.
+const COLOR_LITERAL = /#[0-9a-fA-F]{3,8}\b|\b(?:rgba?|hsla?|hwb|lab|lch|oklab|oklch)\(\s*(?:[\d.]|\$?\{)|\bcolor\(\s*(?:srgb|srgb-linear|display-p3|a98-rgb|prophoto-rgb|rec2020|xyz)\b|\bColor\(0x[0-9a-fA-F]+\)|\bColor\.(?:fromRGBO|fromARGB|hsl)\(|\bHSLColor\.fromAHSL\(|\b(?:UI|NS)?Color\((?:red|hue):/g;
 const hardcoded = [];
 const toScan = (manifest.components || []).filter((c) => c.source === "generated" && c.path).map((c) => c.path).concat(manifest.generatedFiles || []);
 function scanFile(path) {

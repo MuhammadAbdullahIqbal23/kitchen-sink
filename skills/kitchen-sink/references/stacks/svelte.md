@@ -51,6 +51,13 @@ SvelteKit 3 removed the `$lib` alias (build error `module_removed_lib`). Use rel
 - Theme: `document.documentElement.dataset.theme` inside `onMount` or a `$effect`, or the project's mechanism such as `mode-watcher`.
 - Direction: `document.documentElement.dir`. Svelte has no global direction API, so generated components should use logical CSS properties.
 
+## Presentation
+
+- Grid, frames and feedback: the web rules in `sink-spec.md`, in the sink component's `<style>`. Scoped styles don't reach into child components, so style a child through a class it accepts, or with `:global()` inside a scoped parent selector.
+- Each tile is an `<a href="#…">` or the project's link component, built from its card if it has one.
+- Decorative colour: `$derived` from the name (`$:` before Svelte 5). Never `Math.random()`, so server render and hydration agree.
+- `transition:` and `animate:` directives don't check reduced motion. Skip them on tiles, or set `duration` to 0 when `prefersReducedMotion.current` from `svelte/motion` is true, in versions that have it.
+
 ## Verify
 
 `svelte-check`, `lint`, and `build` from `package.json`. Run `dev` and open the route.

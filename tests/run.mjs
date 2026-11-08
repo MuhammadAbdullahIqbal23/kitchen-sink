@@ -338,6 +338,8 @@ const VERIFY_FAILS = [
   ["unaccounted state", (m) => delete m.components[0].states.hover, {}, 'state "hover"'],
   ["bare na", (m) => (m.components[0].states.hover = "na"), {}, "must be static"],
   ["hard-coded colour", () => {}, { "c.css": ".a { color: #ff0000; }" }, "Hard-coded colours"],
+  ["modern colour literal", () => {}, { "c.css": ".a { color: oklch(62% 0.19 250); }" }, "Hard-coded colours"],
+  ["computed decorative colour", (m) => m.generatedFiles.push("decor.js"), { "decor.js": "tile.style.background = `hsl(${hash(name) % 360} 70% 50%)`;" }, "Hard-coded colours"],
   ["lorem ipsum", () => {}, { "sink.html": catalog.components.filter((c) => c.tier === "starter").map((c) => `ks-${c.id}`).join(" ") + " Lorem ipsum" }, "lorem ipsum"],
   ["no gate", (m) => delete m.entry.gate, {}, "entry.gate"],
   ["no foundations", (m) => delete m.foundations.motion, {}, 'Foundation section "motion"'],
@@ -353,6 +355,13 @@ for (const [name, mutate, overrides, expected] of VERIFY_FAILS) {
     assert(report.errors.some((e) => e.includes(expected)), `wanted "${expected}", got ${JSON.stringify(report.errors).slice(0, 300)}`);
   });
 }
+test("verify accepts colours derived from tokens", () => {
+  const { status, report } = verify(sinkFixture("derived-colour", (m) => m.generatedFiles.push("decor.js"), {
+    "c.css": ".a { background: color-mix(in oklch, var(--color-bg-surface) 80%, transparent); color: oklch(from var(--color-text-default) l c h); border-color: rgb(var(--brand-rgb)); }",
+    "decor.js": "const decor = (name, entries) => entries[hash(name) % entries.length];\ntile.style.setProperty('--decor', `var(${decor(tile.id, entries)})`);",
+  }));
+  assert(status === 0, JSON.stringify(report?.errors));
+});
 test("verify accepts honest na and gaps", () => {
   const { status, report } = verify(sinkFixture("honest", (m) => {
     m.components[0].states.hover = "na: touch only";

@@ -26,6 +26,16 @@ Game UIs are usually navigated by gamepad and keyboard as well as pointer, and t
 
 Keep what the game needs: button, slider, checkbox, select, tabs, list, progress, dialog, tooltip, text input. Add game-specific samples as extra entries where relevant: HUD bars, inventory slots, key-binding rows, notifications, health and resource bars. Mark web-specific components such as breadcrumb, pagination and date picker as gaps with `not used in this game`.
 
+## Presentation
+
+Build it from the engine's own UI panels and the game's theme, so it looks like the game rather than a web page:
+
+- Grid: in Unity UI Toolkit, a container with `flex-direction: row` and `flex-wrap: wrap`. In uGUI, `GridLayoutGroup`, whose cells have a fixed size, so check long localised text. In Unreal, `UWrapBox` or `UUniformGridPanel`. In Godot, `HFlowContainer`, or `GridContainer` with `columns` updated on resize.
+- Frames: the theme's panel style, such as a USS class built from tokens, a `PanelContainer` with the theme's `StyleBox` in Godot, or a `UBorder` with the style asset in UMG.
+- Feedback: focus is the primary state, so each tile shows the theme's focus style under gamepad and keyboard as well as hover.
+- Reduced motion and text size: follow the game's own accessibility settings. If it has none, mark them `na: <reason>`.
+- Decorative colour: write the hash yourself. C#'s `string.GetHashCode()` isn't guaranteed to stay the same between runs.
+
 ## Verify
 
 The engines are heavy and typically need an installed editor at a specific version:

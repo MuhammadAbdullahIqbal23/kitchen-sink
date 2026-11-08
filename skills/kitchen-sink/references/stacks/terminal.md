@@ -34,6 +34,18 @@ Colour tokens: map `flatten` output to the toolkit's colours, then expect them t
 
 Terminal pages have to scroll or page. Use tabs or a section list with keyboard navigation, and always show how to quit.
 
+## Presentation
+
+A character grid has no gradients, shadows or hover cards. Build the same patterns from what terminals do have:
+
+- Overview: a bordered panel at the top with the name, stack, scope and counts from the manifest.
+- Section index: bordered boxes that reflow with the terminal width, all with the same number of lines so a row lines up. When the terminal is too narrow for two boxes, switch to a list with one line of description per entry.
+- Frames: box-drawing borders in the theme's border colour, rounded if the toolkit has them, with the component's name in the border title. Textual has `border_title`, Ratatui `Block::bordered().title(…)`, Lip Gloss `RoundedBorder()`, and Ink `<Box borderStyle="round">`.
+- Feedback: the focused tile in reverse video or the theme's highlight colour, plus a marker such as `›`, because colour may be stripped.
+- Sample labels: the dim style.
+- Decorative colour: a hand-written hash into a fixed list of theme colours, paired with a letter or symbol so it still reads under `NO_COLOR`. Python's `hash()` changes on every run, so use `zlib.crc32` in Textual.
+- Reduced motion: `na: terminals have no reduced-motion setting`. Text size: `na: the terminal emulator sets the font size`.
+
 ## Verify
 
 Run the project's checks (`pytest`, `cargo test`, `go test ./...`, `tsc`). To see the result:

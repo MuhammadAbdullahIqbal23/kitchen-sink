@@ -31,8 +31,14 @@ git clone https://github.com/MuhammadAbdullahIqbal23/kitchen-sink.git
 ```
 
 ```bash
-cp -r kitchen-sink/skills/kitchen-sink ~/.claude/skills/kitchen-sink
+mkdir -p ~/.claude/skills
 ```
+
+```bash
+cp -r kitchen-sink/skills/kitchen-sink ~/.claude/skills/
+```
+
+Copy into the `skills` folder, not onto `skills/kitchen-sink`: if that folder already exists, `cp` puts a second copy inside it. To update, delete the old `~/.claude/skills/kitchen-sink` first, so files removed in the new version don't linger.
 
 To share it with a team, use `.claude/skills/kitchen-sink` inside your project instead.
 

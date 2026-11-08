@@ -45,6 +45,13 @@ export default defineNuxtConfig({
 - Theme: `document.documentElement.dataset.theme`, or the project's mechanism, such as `useColorMode` (Nuxt) or `useTheme` (Vuetify).
 - Direction: `document.documentElement.dir`. Vuetify uses `useRtl`, and Element Plus and Naive UI need a provider setting. For other libraries, check their RTL docs, and report it if there's no support.
 
+## Presentation
+
+- Grid, frames and feedback: the web rules in `sink-spec.md`, in the sink's scoped styles or the project's utility classes.
+- Build tiles and frames from the project's card or the library's (`v-card`, `UCard`, `el-card`), and make each tile a `RouterLink` or `NuxtLink`. A library grid such as `v-row` doesn't stretch the card inside a column, so give the card `height: 100%`.
+- Decorative colour: a `computed` from the name. Never `Math.random()`, which also causes hydration mismatches on Nuxt.
+- `<Transition>` doesn't check reduced motion, so put its CSS inside `@media (prefers-reduced-motion: no-preference)`.
+
 ## Verify
 
 Use `package.json` scripts: `vue-tsc --noEmit` or `nuxt typecheck`, then `lint`, `build`. Run `dev` and open the route.

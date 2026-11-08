@@ -42,6 +42,14 @@ XML Views: `view.isPressed = true`, `view.isHovered = true`, and `view.isEnabled
 - Direction: `CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl)`. Use `start` and `end` padding in generated code. XML: `layoutDirection="rtl"`, plus `android:supportsRtl="true"`.
 - Text scale: override `LocalDensity` with a changed `fontScale`.
 
+## Presentation
+
+- Grid: `LazyVerticalGrid` with `GridCells.Adaptive` follows the width, but its tiles can't fill a row's height. For the section index, work out the column count with `BoxWithConstraints`, then lay out rows of `Row(Modifier.height(IntrinsicSize.Min))` whose tiles use `Modifier.weight(1f).fillMaxHeight()`.
+- Frames: Material 3 `OutlinedCard` or `Card`, or the project's surface composable.
+- Feedback: `Card(onClick = …)` gives the theme's ripple and a click action. Check with TalkBack or the layout inspector that the tile reads as its title. Android's closest setting to reduced motion is Remove animations, so check the feedback with it on.
+- Decorative colour: Kotlin's `String.hashCode()` is stable across runs, so `name.hashCode().mod(palette.size)` works. Use `mod`, not `%`, because the hash can be negative. Pick from the colour scheme's container roles with their `on…` colours.
+- XML Views: `GridLayoutManager` with a span count from the width, and `MaterialCardView` for frames.
+
 ## Verify
 
 ```bash

@@ -11,6 +11,7 @@ The contract for what a kitchen sink contains on any platform. The adapter says 
 - Showing states
 - Content rules
 - Compositions
+- Presentation
 - Safety and gating
 - Manifest
 
@@ -20,9 +21,9 @@ In this order, on one scrollable surface, or as one route with sections. On plat
 
 In `existing` scope, keep this structure but include only what the project has. A project with one widget gets a short page, and that's the correct result.
 
-1. **Header:** project name, stack, and scope. In `system` scope, add the tier and a coverage count such as "36 of 38".
-2. **Controls:** sticky, always reachable.
-3. **Section navigation:** jump links or a list, one per section, grouped by catalog category.
+1. **Overview:** project name, stack and scope, with a few counts from the manifest. In `system` scope, add the tier and a coverage count such as "36 of 38".
+2. **Controls:** compact, sticky, always reachable.
+3. **Section index:** a tile per section, grouped by catalog category, or the platform's closest equivalent.
 4. **Foundations:** colour, typography, spacing, radius, elevation, motion, and icons if the project has a set.
 5. **Components:** grouped by catalog `category`, in the catalog's order within each group.
 6. **Compositions:** a few real screens.
@@ -119,6 +120,71 @@ Components that look fine alone can still clash together. In `system` scope, bui
 - A sign-in or settings form, with validation errors showing.
 - A data list or table page, with filters and an empty state.
 - A dashboard or detail page, with cards, stats and navigation.
+
+## Presentation
+
+A sink that looks intentional is easier to scan and review, but its look must come from the project. Build every frame, tile and label from the project's own tokens and components, such as its card or panel, its text styles and its spacing scale. Never give the sink a style of its own, and never restyle a sample. The adapter says how to build each pattern in its stack.
+
+| Part | How it looks |
+| --- | --- |
+| Overview | Comes first. A short summary area naming the system, the stack and the scope, with a few key counts taken from the manifest, such as components rendered, declared gaps and compositions. Never invent a number, and leave out any count the manifest can't give. Read the counts from the manifest at render time where the platform allows it, otherwise update them on every rerun. |
+| Section index | One tile or card per section, each with a title and a one-line description of what's inside. Tiles in the same row share a height, and the number of columns follows the available width, down to one. The whole tile is the target. |
+| Component block | A clear heading, then a short note on its source: which component, library or platform provides it. Then its samples, grouped in one framed area. The spacing between blocks is the same everywhere, taken from one spacing token. |
+| Sample labels | Small and muted, in the project's smallest readable text style and muted text colour, so they stay secondary to the samples. |
+| Controls | Compact and always reachable, without taking a large share of the screen. On a narrow screen, wrap them onto one short row or fold them into a menu. |
+| Feedback | Interactive tiles respond to hover or press through the project's own interaction styles, such as its hover surface or pressed state. Feedback respects reduced motion, and each tile keeps a proper role and accessible name, such as a link named after its section. |
+| Compositions | Realistic content from the product's domain where the domain is clear, following the content rules above. |
+
+**Decorative colour.** If decoration needs colour, for example an icon background or generated placeholder art, take it from the palette with a stable mapping from the item's name: a simple string hash, modulo the number of palette entries you allow. Never random, and never a value that changes between runs, because shifting colours make screenshot comparisons useless. Write the hash yourself, since several languages seed their built-in string hash differently on each run. Pair each background with its matching text token, so contrast holds in every theme.
+
+**Restraint.** Polish must not hide a component, crop it or change how it looks. Use only the effects the tokens define, with no new gradients, shadows, blur or animation. Avoid frames inside frames: each one narrows the samples, which causes overflow at large text sizes. When in doubt, choose less decoration.
+
+List the files that style the sink in `generatedFiles`, so the hard-coded colour scan covers the presentation too. Mark a line that only prints a colour value as text, such as a swatch label, with `token-exempt`.
+
+On the web, a few rules cover the index, the frames and the feedback. Use the project's own token names:
+
+```css
+.sink-index { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); gap: var(--space-4); }
+.sink-tile, .sink-frame { min-width: 0; padding: var(--space-4); border: var(--border-width-thin) solid var(--color-border-default); border-radius: var(--radius-md); background: var(--color-bg-surface); }
+.sink-tile:hover { background: var(--color-bg-sunken); }
+@media (prefers-reduced-motion: no-preference) { .sink-tile { transition: background-color var(--motion-duration-fast); } }
+```
+
+Grid rows stretch by default, so tiles in a row share a height. For decorative colour:
+
+```js
+const hash = (s) => [...s].reduce((h, c) => (h * 31 + c.codePointAt(0)) >>> 0, 0);
+const decor = (name, entries) => entries[hash(name) % entries.length]; // entries: palette token names
+```
+
+An overview and section index, with neutral example content. The counts stand in for real ones from the manifest:
+
+```
+┌────────────────────────────────────────────────────────────┐
+│ Example design system                                      │
+│ React with Vite · system scope · standard tier             │
+│ 31 of 33 components · 2 declared gaps · 3 compositions     │
+└────────────────────────────────────────────────────────────┘
+┌──────────────────┐ ┌──────────────────┐ ┌──────────────────┐
+│ Colour           │ │ Typography       │ │ Actions          │
+│ Palette and      │ │ Text styles,     │ │ Button, icon     │
+│ semantic tokens  │ │ sizes, weights   │ │ button, link     │
+└──────────────────┘ └──────────────────┘ └──────────────────┘
+```
+
+A component block:
+
+```
+Button                                                 #button
+Project component · src/components/Button.tsx
+┌────────────────────────────────────────────────────────────┐
+│          default   hover     focus     disabled            │
+│ primary  [ Save ]  [ Save ]  [ Save ]  [ Save ]            │
+│ danger   [Delete]  [Delete]  [Delete]  [Delete]            │
+│                                                            │
+│ sm [Save]   md [ Save ]   lg [  Save  ]                    │
+└────────────────────────────────────────────────────────────┘
+```
 
 ## Safety and gating
 

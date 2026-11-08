@@ -21,6 +21,13 @@ If Tailwind or Bootstrap is installed, map tokens to its theme, as the React ada
 | WordPress | Blocks, `template-parts` | Page template, or a block pattern for block themes | `if ( ! current_user_can('edit_theme_options') ) wp_die();` plus `WP_DEBUG`. Also add `noindex`. |
 | Shopify | Sections, snippets | `templates/page.kitchen-sink.liquid` | Unpublished page, or check `request.design_mode`. Tell the user a page template can be reached by anyone with the link once assigned. |
 
+## Presentation
+
+- Grid, frames and feedback: the web rules in `sink-spec.md`, in the sink's own stylesheet, registered with the asset pipeline like the tokens.
+- Build tiles and frames from the project's card partial or component (ViewComponent, Blade, Twig or Razor component) if it has one.
+- Decorative colour: compute it in the view or a template helper with a stable hash. Python's `hash()`, Ruby's `String#hash` and .NET's `string.GetHashCode()` change on every restart. Stable choices are `zlib.crc32` in Python, `Zlib.crc32` in Ruby, `crc32` in PHP, `hash/fnv` in Go, `:erlang.phash2` in Elixir, and Java's `String.hashCode()` with `Math.floorMod`, since it can be negative.
+- Stateful components (Livewire, LiveView, Blazor): keep tiles as plain links, so the index works without a live connection.
+
 ## Pitfalls
 
 - Partials often need data. Pass realistic stub values from the sink's view, and never query production data.

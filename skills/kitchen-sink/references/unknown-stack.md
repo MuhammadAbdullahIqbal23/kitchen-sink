@@ -69,6 +69,7 @@ Fill this in before writing code, and show it to the user with the plan:
 | Theme switching uses | |
 | Right-to-left or locale switching uses | |
 | Hover and focus can be forced by | |
+| Tiles, frames and their feedback are built from | |
 | Build and test commands | |
 
 ### 4. Adapt the catalog
